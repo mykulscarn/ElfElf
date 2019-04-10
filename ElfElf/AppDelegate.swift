@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Firebase
+
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        FirebaseApp.configure()
+        
+       // let url = URL(string: "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json")
+        //
+        
+        
+        
+      //  let networkProcessor = NetworkProcessor(url: <#T##URL#>)
+        
+      //  networkProcessor.downloadJSONFromURL { (jsonDictionary) in
+            
+ //           print(jsonDictionary)
+            
+        
         return true
     }
 
