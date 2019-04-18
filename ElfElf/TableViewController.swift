@@ -10,93 +10,25 @@ import UIKit
 
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-     var players = [PlayerStatsTotals]()
     
-    struct PlayerStatsTotals: Codable {
-        let id: Int?
-        let firstName: String?
-        let lastNAme: String?
-        let primaryPosition: String?
-        let jerseyNumber: Int?
-        let height: String?
-        let weight: Int?
-        let age: Int?
-        let college: String?
-        let team: Team?
-        let stats: Stats?
-    }
+    let cellId = "cellId123123"
     
-    struct Team: Codable{
-        let id: Int?
-        let abbreviation: String?
-    }
     
-    struct Stats: Codable {
-        let gamesPlayed: Int?
-        let fieldGoals: FieldGoals?
-        let freeThrows: FreeThrows?
-        let rebounds: Rebounds?
-        let offense: Offense?
-        let defense: Defense?
-    }
-    
-    struct FieldGoals: Codable{
-        let fg2PtAtt: Double?
-        let fg2PtAttPerGame: Double?
-        let fg2PtMade: Double?
-        let fg2PtPct: Double?
-        let fg3PtAtt: Double?
-        let fg3PtAttPerGame: Double?
-        let fg3PtMadePerGame: Double?
-        let fg3PtPct: Double?
-        let fgAtt: Double?
-        let fgAttPerGame: Double?
-        let fgMade: Double?
-        let fgMadePerGame: Double?
-        let fgPct: Double?
-    }
-    
-    struct FreeThrows: Codable{
-        let ftAtt: Int?
-        let ftAttPerGame: Double?
-        let ftMade: Int?
-        let ftMadePerGame: Double?
-        let ftPct: Double?
+    /*
+    init() {
         
+        super.init(nibName: nil, bundle: nil)
     }
     
-    struct Rebounds: Codable{
-        let offReb: Int?
-        let offRebPerGame: Double?
-        let defReb: Int?
-        let defRebPerGame: Double?
-        let reb: Int?
-        let rebPerGame: Double?
-    }
-    
-    struct Offense: Codable{
-        let ast: Int?
-        let astPerGame: Double?
-        let pts: Int?
-        let ptsPerGame: Double?
-    }
-    
-    struct Defense: Codable{
-        let tov: Int?
-        let tovPerGame: Double?
-        let stl: Int?
-        let stlPerGame: Double?
-        let blk: Int?
-        let blkPerGame: Double?
-        let blkAgainst: Int?
-        let blkAgainstPerGame: Double?
-    }
 
-    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    */
     
     @IBOutlet weak var tableView: UITableView!
     
-    //var postData = ["LeBron James", "Stephen Curry","Michael Jordan","Klay Thompson","Damian Lillard","Russell Westbrook","James Harden", "Kevin Durant","Paul George","Delon Wright","Mario Hezonja","Arvydas Sabonis","Kemba Walker","Ben Simmons","Joel Embiid","Kyle Lowry","Serge Ibaka", "Marc Gasol","Norman Powell","Trae Young","Kawhi Leonard","Cody Zeller","Victor Oladipo", "Darren Collison","Myles Turner","Lance Stephenson"]
+    var players = ["LeBron James", "Stephen Curry","Michael Jordan","Klay Thompson","Damian Lillard","Russell Westbrook","James Harden", "Kevin Durant","Paul George","Delon Wright","Mario Hezonja","Arvydas Sabonis","Kemba Walker","Ben Simmons","Joel Embiid","Kyle Lowry","Serge Ibaka", "Marc Gasol","Norman Powell","Trae Young","Kawhi Leonard","Cody Zeller","Victor Oladipo", "Darren Collison","Myles Turner","Lance Stephenson"]
     
     
     override func viewDidLoad() {
@@ -105,6 +37,17 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView.dataSource = self
         // Do any additional setup after loading the view.
     }
+    
+    
+    
+                    let playerStatsJson = fetchJSON(urlString: "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json")
+                    let dfsStatsJson = fetchJSON(urlString: "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/date/20190306/dfs.json")
+    
+    
+    
+    
+    
+    /*
     
     fileprivate func fetchJSON() {
         let urlString = "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json"
@@ -129,16 +72,20 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
             }
             }.resume()
     }
-    
+    */
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count
+        return players.count  //players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cellId")
-        let player = players[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath)
+        
+        let name = self.players[indexPath.row]
+        
+        cell.textLabel?.text = "players"
+        
     
         return cell
         

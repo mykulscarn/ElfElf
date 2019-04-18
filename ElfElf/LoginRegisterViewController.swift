@@ -12,82 +12,103 @@ import Firebase
 
 
 
-class LoginRegisterViewController: UIViewController {
+class LoginRegisterViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var emailText: UITextField!
-    @IBOutlet weak var passwordText: UITextField!
-    @IBOutlet weak var loginRegisterSegmentedControl: UISegmentedControl!
-    @IBOutlet weak var actionButton: UIButton!
-    
-    @IBAction func actionLoginButton(_ sender: UIButton)
-    {
-        if emailText.text != "" && passwordText.text != ""
-        {
-            if loginRegisterSegmentedControl.selectedSegmentIndex == 0
-            {
-                Auth.auth().signIn(withEmail: emailText.text!, password:  passwordText.text!, completion: { (user, error) in
-                    if user != nil
-                    {
-                        //Sign in successful
-                        self.performSegue(withIdentifier: "loginSegue", sender: self)
-                    }
-                    else
-                    {
-                        if let myError = error?.localizedDescription
-                        {
-                            print(myError)
-                        }
-                        else
-                        {
-                            print("Error")
-                        }
-                    }
-                })
-            }
-            else  //Sign up user
-            {
-                Auth.auth().createUser(withEmail: emailText.text!, password: passwordText.text!, completion: { (user, error) in
-                    if user != nil
-                    {
-                        //Sign in successful
-                    }
-                    else
-                    {
-                        if let myError = error?.localizedDescription
-                        {
-                            print(myError)
-                        }
-                        else
-                        {
-                            print("Error")
-                        }
-                    }
-                })
-                    
-                    
-                
-            }
-        }
-    }
+    @IBOutlet weak var nameField: UITextField!
+    @IBOutlet weak var emailField: UITextField!
+    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var confirmPwField: UITextField!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var nextBtn: UIButton!
     
     
+    let picker = UIImagePickerController()
+    var userStorage: StorageReference!
+    var ref: DatabaseReference!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        picker.delegate = self
+        let storage = Storage.storage().reference(forURL: "gs://elfelf-bd143.appspot.com")
+        ref = Database.database().reference()
+        userStorage = storage.child("users")
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    @IBAction func selectPicturePressed(_ sender: Any) {
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        
+        present(picker, animated: true, completion: nil)
     }
-    */
+    
+    
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            self.imageView.image = image
+            nextBtn.isHidden = false
+        }
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func nextPressed(_ sender: Any) {
+        
+       guard nameField.text != "", emailField.text != "", passwordField.text != "", confirmPwField.text != "" else {return}
+        
+        if passwordField.text == confirmPwField.text {
+            Auth.auth().createUser(withEmail: emailField.text!, password: passwordField.text!) { (user, error) in
+                if let error = error {
+                    print (error.localizedDescription)
+                }
+                if let user = user {
+                    
+                    let imageRef = self.userStorage.child("\(user.user.uid).jpg")
+                    let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
+                    changeRequest.displayName = self.nameField.text!
+                    changeRequest.commitChanges(completion: nil)
+                    let data = UIImage.jpegData(self.imageView.image!)
 
-}
+                   // doesnt work up until 42:25 of vid        let imageRef = self.userStorage.child("\(user.uid).jpg")
+                    
+                    /*let uploadTask = imageRef.put(data, metadata: nil, completion: { (metadata, error) in
+                    
+                        if err != nil {
+                            print(err!.localizedDescription)
+                        }
+                        imageRef.downloadURL(completion: { (url, er) in
+                            if er != nil {
+                                print(er!.localizedDescription)
+                            }
+                            
+                            if let url = url {
+                                let userInfo: [String : Any] = ["uid" : user.user.uid,
+                                    "full name" : self.nameField.text!,
+                                    "urlToImage" : url.absoluteString]
+                                
+                                self.ref.child("users").child(user.uid).setValue(userInfo)
+                                
+                                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController(withIdentifier: "usersVC")
+                                
+                                self.present(vc, animated: true, completion: nil)
+                                
+                            
+                            }
+                            
+                        })
+                        
+                    })*/
+                    
+                    //uploadTask.resume()
+                    
+                }
+            }
+        } else {
+            print("Password does not match")
+        }
+        
+        }
+    }
+ 

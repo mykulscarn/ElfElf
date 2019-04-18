@@ -12,20 +12,40 @@ import Foundation
 ///---All of the references from https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/date/20190306/dfs.json // (teamReferences, venueReferences(unused), gameReferences, playerReferences) ---These are the regular season Daily Fantasy Sports statistics
 
 
-struct TeamReferences: Codable {
+//Copy and paste these into their own files
+
+//   var teamReferences: [TeamReferences]
+
+
+
+
+
+/*struct TeamReferences: Codable{
     let id: Int?
     let city: String?
     let name: String?
     let abbreviation: String?
+    
+    enum TeamReferences: String, CodingKey {
+        case id = "id"
+        case city = "city"
+        case name = "name"
+        case abbreviation = "abbreviation"
+        
+    }
+    
 }
 
-struct VenueReferences: Codable {
+
+/*
+
+struct VenueReferences: Codable{
     let id: Int?
     let name: String?
     let city: String?
 }
 
-struct GameReferences: Codable {
+struct GameReferences: Codable{
     let id: Int?
     let startTime: String?
     let awayTeam: AwayTeam?
@@ -143,13 +163,4 @@ struct Defense: Codable{
     let blkAgainstPerGame: Double?
 }
 
-
-
-
-
-
-
-
-
-
-
+ */*/

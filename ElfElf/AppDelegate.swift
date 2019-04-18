@@ -17,6 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
 
+
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -32,7 +34,66 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       //  networkProcessor.downloadJSONFromURL { (jsonDictionary) in
             
  //           print(jsonDictionary)
+        
+        let username = "1a9ad43d-f010-4f84-b24a-bdb39f"
+        let password = "MYSPORTSFEEDS"
+        let loginString = String(format: "%@:%@", username, password)
+        let loginData = loginString.data(using: String.Encoding.utf8)!
+        let base64LoginString = loginData.base64EncodedString()
+        
+        //let  url = URL(string: "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json")
+        
+        // give this to URLSession object
+        
+
+        
+        /*
+        
+        NSURLConnection.sendAsynchronousRequest(request, queue: OperationQueue.main, completionHandler:  {(response: URLResponse?, data: Data?, error: Error?) -> Void in
             
+            do {
+                if let data = data {//jsonResult = try JSONSerialization.jsonObject(with: data!, options: []) as? NSDictionary {
+                    print("Hooray")
+                    print("\(data)")
+                }
+            } catch let error as NSError {
+                print("xxxxx")
+                print(error.localizedDescription)
+            }
+        }) */
+        
+        let urlString = "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json"
+
+        print("urlString: \(urlString)")
+        
+        let url = URL(string: urlString)
+        
+        var request = URLRequest(url: url!)
+        request.httpMethod = "POST"
+        request.setValue("Basic \(base64LoginString)", forHTTPHeaderField: "Authorization")
+        request.timeoutInterval = 600
+        
+        print("----")
+        print(request)
+        print(request.value(forHTTPHeaderField: "Authorization"))
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
+            
+            print("lockout.response: \(String(describing: response))")
+            print("lockout.data: \(String(describing: data?.description))")
+            
+            let data = data
+            
+            do {
+                print("****")
+                print(data)
+                print("****")
+            }
+        })
+        
+        task.resume()
+
+        print("moooo")
         
         return true
     }

@@ -16,7 +16,9 @@ class PlayerStatsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-      fetchJSON()
+   //     fetchCoursesJSON()
+        
+   //   fetchJSON()
 
         // Do any additional setup after loading the view.
     }
@@ -24,7 +26,20 @@ class PlayerStatsViewController: UIViewController {
     
     
     
+  
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    //----initial try ---- ignore this for now 4-17 --------------------      -----------
+    
+    /*
     fileprivate func fetchJSON() {
         let urlString = "https://api.mysportsfeeds.com/v2.1/pull/nba/2018-2019-regular/player_stats_totals.json"
         guard let url = URL(string: urlString) else { return }
@@ -49,7 +64,7 @@ class PlayerStatsViewController: UIViewController {
         }.resume()
     }
     
-
-    
+*/
+   //-----------------------------------------------
     
 }

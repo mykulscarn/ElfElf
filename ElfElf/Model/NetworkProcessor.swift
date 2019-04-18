@@ -9,7 +9,7 @@
 import Foundation
 
 
-class NetworkProcessor
+/*class NetworkProcessor
 {
     
    lazy var configuration: URLSessionConfiguration = URLSessionConfiguration.default
@@ -64,3 +64,4 @@ class NetworkProcessor
     }
     
 }
+ /**/*/
