@@ -11,7 +11,7 @@ import UIKit
 class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    let cellId = "cellId123123"
+    let cellId = "cellId"
     
     
     /*
@@ -80,14 +80,15 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as? PlayerTableViewCell
         
         let name = self.players[indexPath.row]
+        print("name: \(name)")
         
-        cell.textLabel?.text = "players"
+        //cell.textLabel?.text = "players"
         
     
-        return cell
+        return cell!
         
     }
     

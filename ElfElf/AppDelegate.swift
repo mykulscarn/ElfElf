@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         print("----")
         print(request)
-        print(request.value(forHTTPHeaderField: "Authorization"))
+        print(request.value(forHTTPHeaderField: "Authorization") ?? "")
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             
