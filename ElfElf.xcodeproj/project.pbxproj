@@ -10,7 +10,6 @@
 		35337E892269389F00E10161 /* PlayerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35337E882269389F00E10161 /* PlayerTableViewCell.swift */; };
 		355019622269245600C2FBBC /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355019612269245600C2FBBC /* UserCell.swift */; };
 		35602E77225D49FA0078EEFB /* dataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35602E76225D49FA0078EEFB /* dataModel.swift */; };
-		35602E79225D6FED0078EEFB /* PlayerStatsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35602E78225D6FED0078EEFB /* PlayerStatsViewController.swift */; };
 		35A9DBC42266CB3D00EC5AC5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A9DBC32266CB3D00EC5AC5 /* LoginViewController.swift */; };
 		35B564AA2256C63E002559DA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35B564A92256C63E002559DA /* AppDelegate.swift */; };
 		35B564AF2256C63E002559DA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 35B564AD2256C63E002559DA /* Main.storyboard */; };
@@ -48,7 +47,6 @@
 		35337E882269389F00E10161 /* PlayerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerTableViewCell.swift; sourceTree = "<group>"; };
 		355019612269245600C2FBBC /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		35602E76225D49FA0078EEFB /* dataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dataModel.swift; sourceTree = "<group>"; };
-		35602E78225D6FED0078EEFB /* PlayerStatsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStatsViewController.swift; sourceTree = "<group>"; };
 		35A85E39226902420046A301 /* ElfElf-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ElfElf-Bridging-Header.h"; sourceTree = "<group>"; };
 		35A9DBC32266CB3D00EC5AC5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		35B564A62256C63E002559DA /* ElfElf.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ElfElf.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -127,7 +125,6 @@
 				35D5FE82225E9A0C00AF6FAF /* UsersViewController.swift */,
 				35B564C5225AEBF7002559DA /* ComposeViewController.swift */,
 				35FA1AC7225C391000D27480 /* SuccessfulLoginRegister.swift */,
-				35602E78225D6FED0078EEFB /* PlayerStatsViewController.swift */,
 				35FA1AC5225C2A2C00D27480 /* LoginRegisterViewController.swift */,
 				35337E882269389F00E10161 /* PlayerTableViewCell.swift */,
 				35A9DBC32266CB3D00EC5AC5 /* LoginViewController.swift */,
@@ -368,7 +365,6 @@
 				35D5FE87225E9D1500AF6FAF /* User.swift in Sources */,
 				35B564C8225AF181002559DA /* PlayerTableViewController.swift in Sources */,
 				35FA1AC8225C391000D27480 /* SuccessfulLoginRegister.swift in Sources */,
-				35602E79225D6FED0078EEFB /* PlayerStatsViewController.swift in Sources */,
 				35FA1AC6225C2A2C00D27480 /* LoginRegisterViewController.swift in Sources */,
 				35337E892269389F00E10161 /* PlayerTableViewCell.swift in Sources */,
 				35D5FE6D225E6C8C00AF6FAF /* FieldGoals.swift in Sources */,
@@ -536,7 +532,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TGKR7PCN52;
+				DEVELOPMENT_TEAM = P5U3KF2575;
 				INFOPLIST_FILE = ElfElf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -558,7 +554,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = TGKR7PCN52;
+				DEVELOPMENT_TEAM = P5U3KF2575;
 				INFOPLIST_FILE = ElfElf/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

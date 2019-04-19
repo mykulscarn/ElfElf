@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 import Firebase
 
 
@@ -79,14 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, response, error) in
             
-            print("lockout.response: \(String(describing: response))")
-            print("lockout.data: \(String(describing: data?.description))")
-            
-            let data = data
+            guard let data = data else { return }
             
             do {
                 print("****")
-                print(data)
+                let dataString = String(data: data, encoding: .utf8)
+                print("data: \(dataString)")
                 print("****")
             }
         })

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class PlayerTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
     let cellId = "cellId"
@@ -74,22 +74,26 @@ class TableViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     */
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return players.count  //players.count
+        return players.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier:cellId, for: indexPath) as? PlayerTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! PlayerTableViewCell
         
-        let name = self.players[indexPath.row]
-        print("name: \(name)")
+        let name = players[indexPath.row]
+        cell.textLabel?.text = name
         
-        //cell.textLabel?.text = "players"
         
+        //cell.nameLabel?.text = self.players[indexPath.row]
+
     
-        return cell!
-        
+        return cell
     }
     
     
