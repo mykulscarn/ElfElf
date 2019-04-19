@@ -64,8 +64,8 @@ class LoginRegisterViewController: UIViewController, UIImagePickerControllerDele
                     print (error.localizedDescription)
                 }
                 if let user = user {
-                    
-                    let imageRef = self.userStorage.child("\(user.user.uid).jpg")
+                    let fileName = "\(user.user.uid).jpg"
+                    let imageRef = self.userStorage.child(fileName)
                     let changeRequest = Auth.auth().currentUser!.createProfileChangeRequest()
                     changeRequest.displayName = self.nameField.text!
                     changeRequest.commitChanges(completion: nil)
@@ -73,7 +73,10 @@ class LoginRegisterViewController: UIViewController, UIImagePickerControllerDele
 
                    // doesnt work up until 42:25 of vid        let imageRef = self.userStorage.child("\(user.uid).jpg")
                     
-                    /*let uploadTask = imageRef.put(data, metadata: nil, completion: { (metadata, error) in
+                    let uploadTask = imageRef.putData(data, metadata: nil, completion: { (metadata, error) in
+                        
+                    
+                    //putData(data, metadata: nil, completion: { (metadata, error) in
                     
                         if err != nil {
                             print(err!.localizedDescription)
@@ -99,9 +102,9 @@ class LoginRegisterViewController: UIViewController, UIImagePickerControllerDele
                             
                         })
                         
-                    })*/
+                    })
                     
-                    //uploadTask.resume()
+                    uploadTask.resume()
                     
                 }
             }
